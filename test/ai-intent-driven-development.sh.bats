@@ -714,3 +714,17 @@ teardown() {
   assert [ -f "ARCHITECTURE.md" ]
   assert [ -f "PHOENIX_DEVELOPMENT.md" ]
 }
+
+# --- Test Side Effects ---
+
+@test "ensure intent kaban folders are created" {
+  run "$SCRIPT_PATH" copy
+  assert_success
+
+  assert [ -d ".intents/todo" ]
+  assert [ -f ".intents/todo/.gitkeep" ]
+  assert [ -d ".intents/work-in-progress" ]
+  assert [ -f ".intents/work-in-progress/.gitkeep" ]
+  assert [ -d ".intents/completed" ]
+  assert [ -f ".intents/completed/.gitkeep" ]
+}

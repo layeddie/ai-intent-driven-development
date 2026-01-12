@@ -59,6 +59,11 @@ Backup_Agent_File() {
   fi
 }
 
+Create_Intent_Kaban_Folders() {
+  mkdir -p .intents/todo .intents/work-in-progress .intents/completed
+  touch .intents/todo/.gitkeep .intents/work-in-progress/.gitkeep .intents/completed/.gitkeep
+}
+
 From_Scratch() {
   local _agent_file="${1}"
   local _language="${2}"
@@ -76,6 +81,8 @@ Add_All() {
   local _agent_file="${1}"
   local _language="${2}"
   local _framework="${3}"
+
+  Create_Intent_Kaban_Folders
 
   local agents_file_to_copy="${INSTALL_DIR}/${_agent_file}"
 
@@ -157,6 +164,8 @@ Add_All() {
 Copy_All() {
   local _language="${1}"
   local _framework="${2}"
+
+  Create_Intent_Kaban_Folders
 
   cp "${INSTALL_DIR}/AGENTS.md" .
   cp "${INSTALL_DIR}/DEVELOPMENT_WORKFLOW.md" .
